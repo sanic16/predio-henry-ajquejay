@@ -31,7 +31,7 @@ const CardCarSlider: React.FC<CardCarSliderProps> = ({
   id,
 }) => {
   return (
-    <Card className="h-full transition-transform duration-300 transform hover:scale-105 bg-gradient-to-b from-gray-900 via-gray-800 to-black shadow-lg rounded-lg overflow-hidden">
+    <Card className="h-full transition-transform duration-300 transform bg-gradient-to-b from-gray-900 via-gray-800 to-black shadow-lg rounded-lg overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-gray-800 to-gray-900 p-4 text-white">
         <CardTitle className="text-xl font-bold line-clamp-1">
           {title}
@@ -55,7 +55,7 @@ const CardCarSlider: React.FC<CardCarSliderProps> = ({
         <p className="text-lg font-semibold">Q {price}</p>
         <Link
           href={`/autos/${model.make}-${model.year}-${id}`}
-          className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-1 px-3 rounded-lg transition-all"
+          className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded-lg transition-all"
         >
           Ver más
         </Link>
