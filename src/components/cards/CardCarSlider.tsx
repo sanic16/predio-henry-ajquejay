@@ -57,7 +57,7 @@ const CardCarSlider: React.FC<CardCarSliderProps> = ({
           href={`/autos/${model.make}-${model.year}-${id}`}
           className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-1 px-3 rounded-lg transition-all"
         >
-          View Details
+          Ver más
         </Link>
       </CardFooter>
     </Card>
