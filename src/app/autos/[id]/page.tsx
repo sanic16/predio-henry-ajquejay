@@ -18,12 +18,12 @@ export default function PageCarDetails({ params }: PageCarDetailsProps) {
 
   return (
     <div className="custom-container">
-      <div className="grid lg:grid-cols-2 mt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mt-4">
         <div>
           <CarSlideshowThumbnails images={car?.images} />
         </div>
         <div>
-          <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
             <div className="p-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-2">
                 Ford F150 XLT Cabina Sencilla

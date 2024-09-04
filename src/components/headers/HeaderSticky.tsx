@@ -25,11 +25,6 @@ const HeaderSticky = () => {
           </li>
           <li>
             <a href="#" className="hover:text-gray-400">
-              Servicios
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-gray-400">
               Contacto
             </a>
           </li>
