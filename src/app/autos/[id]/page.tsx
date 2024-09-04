@@ -1,4 +1,4 @@
-import { SelectForm } from "@/components/filter/FormExample";
+import ProfileForm from "@/components/filter/FormExample";
 import FormFilter from "@/components/filter/FormFilter";
 import CarSlideshowThumbnails from "@/components/slideshows/CarSlideshowThumbnails";
 import { cars_data } from "@/data/cars";
@@ -24,7 +24,6 @@ export default function PageCarDetails({ params }: PageCarDetailsProps) {
         <div>
           <CarSlideshowThumbnails images={car?.images} />
         </div>
-        <FormFilter />
         <div>
           <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
             <div className="p-6">

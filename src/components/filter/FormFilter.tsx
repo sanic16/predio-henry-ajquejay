@@ -21,15 +21,25 @@ import {
 } from "@/components/ui/select";
 import { Button } from "../ui/button";
 import { toast } from "@/hooks/use-toast";
-import { cars_data } from "@/data/cars";
+import { Slider } from "../ui/slider";
+import { search } from "@/actions";
+import { useTransition } from "react";
 
 const FormFilter = () => {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof CarFilterSearchSchema>>({
     resolver: zodResolver(CarFilterSearchSchema),
-    defaultValues: {},
+    defaultValues: {
+      price: 0,
+    },
   });
 
   function onSubmit(data: z.infer<typeof CarFilterSearchSchema>) {
+    startTransition(async () => {
+      const dataReturned = await search(data);
+      console.log(dataReturned);
+    });
     toast({
       title: "You submitted the following values:",
       description: (
@@ -39,6 +49,7 @@ const FormFilter = () => {
       ),
     });
   }
+
   return (
     <div className="bg-white p-4 rounded-xl">
       <Form {...form}>
@@ -50,7 +61,11 @@ const FormFilter = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Marca</FormLabel>
-                  <Select>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    disabled={isPending}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccione una marca" />
@@ -81,7 +96,11 @@ const FormFilter = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Modelo</FormLabel>
-                  <Select>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    disabled={isPending}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccione una transmisión" />
@@ -105,10 +124,14 @@ const FormFilter = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Año</FormLabel>
-                  <Select>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    disabled={isPending}
+                  >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Seleccione una transmisión" />
+                        <SelectValue placeholder="Seleccione un año" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -118,18 +141,42 @@ const FormFilter = () => {
                       <SelectItem value="2019">2019</SelectItem>
                       <SelectItem value="2018">2018</SelectItem>
                       <SelectItem value="2017">2017</SelectItem>
-                      <SelectItem value="2016">2016</SelectItem>
-                      <SelectItem value="2015">2015</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Seleccione el año del auto que desea buscar.
+                    En qué año fue fabricado el auto que desea buscar.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">Buscar</Button>
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field: { value, onChange } }) => (
+                <FormItem>
+                  <FormLabel>Price - {value}</FormLabel>
+                  <FormControl>
+                    <Slider
+                      min={30000}
+                      max={500000}
+                      step={10000}
+                      defaultValue={[value]}
+                      value={[value]}
+                      onValueChange={(v) => onChange(v[0])}
+                      disabled={isPending}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This is a description for the price.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" disabled={isPending}>
+              Buscar
+            </Button>
           </div>
         </form>
       </Form>
