@@ -10,7 +10,7 @@ import carImage1 from "@/../public/cars/car_A_1.jpg";
 import Image from "next/image";
 const Banner = () => {
   return (
-    <div className="custom-container mx-auto h-[70vh] mt-4">
+    <div className="h-[70vh] mt-4">
       <Carousel
         opts={{
           align: "start",

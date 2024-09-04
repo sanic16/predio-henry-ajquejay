@@ -130,6 +130,7 @@ export const cars_data: CardCarsSliderProps[] = [
     },
     condition: "Nuevo",
     transmission: "Automático",
+    mileage: 10000,
     location: "Chimaltenango",
   },
   {
@@ -164,6 +165,7 @@ export const cars_data: CardCarsSliderProps[] = [
       capacity: "1.25L",
     },
     condition: "Nuevo",
+    mileage: 10000,
     transmission: "Manual",
     location: "Chimaltenango",
   },

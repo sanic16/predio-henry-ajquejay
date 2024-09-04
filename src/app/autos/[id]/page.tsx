@@ -1,4 +1,4 @@
-import CarSlideshowThumbnails from "@/components/cards-slideshow/CarSlideshowThumbnails";
+import CarSlideshowThumbnails from "@/components/slideshows/CarSlideshowThumbnails";
 import { cars_data } from "@/data/cars";
 import { notFound } from "next/navigation";
 

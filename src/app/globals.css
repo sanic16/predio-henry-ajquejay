@@ -18,7 +18,7 @@
 
 /* custom-utilities.css */
 .custom-container {
-  @apply w-[90%] mx-auto;
+  @apply w-[90%] max-w-[1280px] mx-auto;
 
   /* Apply the smaller width for small screens */
   /* @screen sm {
