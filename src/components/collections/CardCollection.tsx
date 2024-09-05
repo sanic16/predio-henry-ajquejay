@@ -25,6 +25,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
     filteredCars.slice(0, itemsPerPage)
   ); // Current cars to display
   const [currentPage, setCurrentPage] = useState(1);
+  const [showFilterForm, setShowFilterForm] = useState(false); // State to toggle filter form visibility
 
   // Load more cars and add to current data
   const loadMoreCars = () => {
@@ -51,13 +52,28 @@ const CardCollection: React.FC<CardCollectionProps> = ({
   return (
     <section className="mt-8 md:mt-12 min-h-screen">
       <SectionHeading title="Todos los autos" align="left" />
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr,3fr] gap-4 items-start">
-        <FormFilter
-          setSearchedCars={setSearchedCars}
-          models={models}
-          transmissions={transmissions}
-          years={years}
-        />
+
+      {/* Button to show/hide filter form on small screens */}
+      <div className="mb-4 md:hidden flex justify-end">
+        <button
+          onClick={() => setShowFilterForm((prev) => !prev)}
+          className="px-4 py-2 bg-gray-200 rounded"
+        >
+          {showFilterForm ? "Ocultar filtros" : "Mostrar filtros"}
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-[1fr,3fr] gap-4 items-start">
+        {/* Show the form based on state in small screens, always show in md and larger */}
+        <div className={`${showFilterForm ? "block" : "hidden"} md:block`}>
+          <FormFilter
+            setSearchedCars={setSearchedCars}
+            models={models}
+            transmissions={transmissions}
+            years={years}
+          />
+        </div>
+
         <div>
           <div className="flex flex-col gap-4">
             {carsData.map((car) => (

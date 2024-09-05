@@ -22,12 +22,11 @@ body {
 
 /* custom-utilities.css */
 .custom-container {
-  @apply w-[90%] lg:w-[80%] max-w-[1200px] mx-auto;
+  @apply mx-auto w-[90%] lg:max-w-[1200px];
+}
 
-  /* Apply the smaller width for small screens */
-  /* @screen sm {
-    @apply w-9/10;
-  } */
+.navbar-container {
+  @apply mx-auto w-full lg:max-w-[1200px];
 }
 
 @layer utilities {
