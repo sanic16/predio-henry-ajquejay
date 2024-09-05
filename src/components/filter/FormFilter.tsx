@@ -95,6 +95,29 @@ const FormFilter: React.FC<FormFilterProps> = ({
           <div className="space-y-4">
             <FormField
               control={form.control}
+              name="price"
+              render={({ field: { value, onChange } }) => (
+                <FormItem>
+                  <FormLabel>Price - {value}</FormLabel>
+                  <FormControl>
+                    <Slider
+                      min={30000}
+                      max={500000}
+                      step={10000}
+                      value={[value]}
+                      onValueChange={(v) => onChange(v[0])}
+                      disabled={isPending}
+                    />
+                  </FormControl>
+                  {/* <FormDescription>
+                    This is a description for the price.
+                  </FormDescription> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="make"
               render={({ field }) => (
                 <FormItem>
@@ -118,13 +141,50 @@ const FormFilter: React.FC<FormFilterProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormDescription>
+                  {/* <FormDescription>
                     Seleccione la marca del auto que desea buscar.
-                  </FormDescription>
+                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="year"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Año</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    disabled={isPending}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Seleccione un año" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="all">Todos los años</SelectItem>
+                      {years.map((year) => (
+                        <SelectItem
+                          key={year.toString()}
+                          value={year.toString()}
+                        >
+                          {year}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {/* <FormDescription>
+                    En qué año fue fabricado el auto que desea buscar.
+                  </FormDescription> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="transmission"
@@ -156,71 +216,14 @@ const FormFilter: React.FC<FormFilterProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormDescription>
+                  {/* <FormDescription>
                     Seleccione el tipo de transmisión del auto que desea buscar.
-                  </FormDescription>
+                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="year"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Año</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    disabled={isPending}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Seleccione un año" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="all">Todos los años</SelectItem>
-                      {years.map((year) => (
-                        <SelectItem
-                          key={year.toString()}
-                          value={year.toString()}
-                        >
-                          {year}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>
-                    En qué año fue fabricado el auto que desea buscar.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field: { value, onChange } }) => (
-                <FormItem>
-                  <FormLabel>Price - {value}</FormLabel>
-                  <FormControl>
-                    <Slider
-                      min={30000}
-                      max={500000}
-                      step={10000}
-                      value={[value]}
-                      onValueChange={(v) => onChange(v[0])}
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    This is a description for the price.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <Button type="submit" disabled={isPending}>
               Buscar
             </Button>

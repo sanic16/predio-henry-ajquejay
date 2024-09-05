@@ -21,7 +21,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
   // States for pagination
   const [carsData, setCarsData] = useState<Car[]>(cars);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2; // Number of cars per page
+  const itemsPerPage = 6; // Number of cars per page
 
   // Calculate the number of pages
   const totalPages = Math.ceil(carsData.length / itemsPerPage);
@@ -49,7 +49,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
   };
 
   return (
-    <section className="mt-8 md:mt-12">
+    <section className="mt-8 md:mt-12 min-h-screen">
       <SectionHeading title="Todos los autos" align="left" />
       <div className="grid grid-cols-1 lg:grid-cols-[1fr,3fr] gap-4 items-start">
         <FormFilter

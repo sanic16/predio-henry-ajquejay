@@ -10,10 +10,16 @@ export default async function Home() {
   );
   const models = Array.from(new Set(carsData.map((car) => car.modelMake)));
   const years = Array.from(new Set(carsData.map((car) => car.modelYear)));
+  const lastFiveCars = await prisma.car.findMany({
+    take: 5,
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return (
     <div className="custom-container mx-auto">
       <Banner />
-      <CardsCarousel />
+      <CardsCarousel cars={lastFiveCars} />
       <CardCollection
         carsData={carsData}
         models={models}

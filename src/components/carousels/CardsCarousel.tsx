@@ -8,10 +8,14 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import CardCarSlider from "@/components/cards/CardCarSlider";
-import { cars_data } from "@/data/cars";
 import SectionHeading from "../headings/SectionHeading";
+import { Car } from "@prisma/client";
 
-const CardsCarousel = () => {
+interface CardsCarouselProps {
+  cars: Car[];
+}
+
+const CardsCarousel: React.FC<CardsCarouselProps> = ({ cars }) => {
   return (
     <section className="mt-8 md:mt-12">
       <SectionHeading title="Lo Último" align="left" />
@@ -29,13 +33,13 @@ const CardsCarousel = () => {
           className="w-full"
         >
           <CarouselContent>
-            {cars_data.map((car) => (
+            {cars.map((car) => (
               <CarouselItem
                 key={car.id}
                 className="basis-full sm:basis-1/2 lg:basis-1/4"
               >
                 <div className="p-1">
-                  <CardCarSlider key={car.id} {...car} image={car.images[0]} />
+                  <CardCarSlider key={car.id} car={car} />
                 </div>
               </CarouselItem>
             ))}
