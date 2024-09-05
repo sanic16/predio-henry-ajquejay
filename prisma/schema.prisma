@@ -12,3 +12,45 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Car {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  images           String[]
+  modelYear        Int
+  modelMake        String
+  price            Float
+  condition        Condition @default(USED)
+  transmission     Transmission @default(AUTO)
+  mileage          Int
+  engineType       EngineType @default(PETROL)
+  engineCapacity   Float
+  color            String?
+  doors            Int?
+  warranty         Boolean?  @default(false)
+  lastServiced     DateTime?
+  location         String?
+  description      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+
+enum Condition {
+  NEW 
+  USED
+}
+
+enum Transmission {
+  AUTO
+  MANUAL
+  SEMI_AUTO
+  CVT
+}
+
+enum EngineType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  HYBRID  
+}

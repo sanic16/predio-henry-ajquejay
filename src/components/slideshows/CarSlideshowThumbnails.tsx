@@ -14,11 +14,7 @@ import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 
 interface CarSlideshowThumbnailsProps {
-  images: {
-    src: string;
-    width: number;
-    height: number;
-  }[];
+  images: string[];
 }
 const CarSlideshowThumbnails: React.FC<CarSlideshowThumbnailsProps> = ({
   images,
@@ -40,11 +36,12 @@ const CarSlideshowThumbnails: React.FC<CarSlideshowThumbnailsProps> = ({
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="flex h-full w-full items-center justify-center">
+            <div className="relative flex h-full w-full items-center justify-center">
               <Image
-                src={image}
+                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${image}`}
                 alt="Car"
                 className="block h-full w-full object-cover"
+                fill
               />
             </div>
           </SwiperSlide>
@@ -66,7 +63,7 @@ const CarSlideshowThumbnails: React.FC<CarSlideshowThumbnailsProps> = ({
           <SwiperSlide key={index}>
             <button className="flex h-full w-full items-center justify-center">
               <Image
-                src={image}
+                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${image}`}
                 alt="Car"
                 width={200}
                 height={150}

@@ -23,22 +23,60 @@ import { Button } from "../ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Slider } from "../ui/slider";
 import { search } from "@/actions";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
+import { Car } from "@prisma/client";
 
-const FormFilter = () => {
+interface FormFilterProps {
+  setSearchedCars: (cars: Car[]) => void;
+  transmissions: string[];
+  models: string[];
+  years: number[];
+}
+
+const FormFilter: React.FC<FormFilterProps> = ({
+  setSearchedCars,
+  models,
+  transmissions,
+  years,
+}) => {
+  const [carsData, setCarsData] = useState<Car[]>([]);
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof CarFilterSearchSchema>>({
     resolver: zodResolver(CarFilterSearchSchema),
     defaultValues: {
-      price: 0,
+      price: 300000,
     },
   });
 
   function onSubmit(data: z.infer<typeof CarFilterSearchSchema>) {
-    startTransition(async () => {
-      const dataReturned = await search(data);
-      console.log(dataReturned);
+    startTransition(() => {
+      search(data)
+        .then((data) => {
+          if (data) {
+            setSearchedCars(data);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      // search(data)
+      //   .then((cars) => {
+      //     if ("error" in cars) {
+      //       toast({ title: "Error", description: cars.error });
+      //     } else {
+      //       setCarsData(cars); // Uncomment and use this if needed
+      //       console.log(cars);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     // Handle potential errors from the search function
+      //     console.error(error);
+      //     toast({
+      //       title: "Error",
+      //       description: "An unexpected error occurred.",
+      //     });
+      //   });
     });
     toast({
       title: "You submitted the following values:",
@@ -72,15 +110,12 @@ const FormFilter = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="mazda">Mazda</SelectItem>
-                      <SelectItem value="ford">Ford</SelectItem>
-                      <SelectItem value="toyota">Toyota</SelectItem>
-                      <SelectItem value="chevrolet">Chevrolet</SelectItem>
-                      <SelectItem value="honda">Honda</SelectItem>
-                      <SelectItem value="nissan">Nissan</SelectItem>
-                      <SelectItem value="hyundai">Hyundai</SelectItem>
-                      <SelectItem value="kia">Kia</SelectItem>
-                      <SelectItem value="volkswagen">Volkswagen</SelectItem>
+                      <SelectItem value="all">Todas las marcas</SelectItem>
+                      {models.map((model) => (
+                        <SelectItem key={model} value={model}>
+                          {model}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormDescription>
@@ -95,7 +130,7 @@ const FormFilter = () => {
               name="transmission"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Modelo</FormLabel>
+                  <FormLabel>Transmisión</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
@@ -107,8 +142,18 @@ const FormFilter = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="automatic">Automático</SelectItem>
-                      <SelectItem value="manual">Manual</SelectItem>
+                      <SelectItem value="all">
+                        Todas las transmisiones
+                      </SelectItem>
+                      {transmissions.map((transmission) => (
+                        <SelectItem key={transmission} value={transmission}>
+                          {transmission === "AUTO"
+                            ? "Automática"
+                            : transmission === "MANUAL"
+                            ? "Manual"
+                            : "Otro"}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormDescription>
@@ -135,12 +180,15 @@ const FormFilter = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="2022">2022</SelectItem>
-                      <SelectItem value="2021">2021</SelectItem>
-                      <SelectItem value="2020">2020</SelectItem>
-                      <SelectItem value="2019">2019</SelectItem>
-                      <SelectItem value="2018">2018</SelectItem>
-                      <SelectItem value="2017">2017</SelectItem>
+                      <SelectItem value="all">Todos los años</SelectItem>
+                      {years.map((year) => (
+                        <SelectItem
+                          key={year.toString()}
+                          value={year.toString()}
+                        >
+                          {year}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormDescription>
@@ -161,7 +209,6 @@ const FormFilter = () => {
                       min={30000}
                       max={500000}
                       step={10000}
-                      defaultValue={[value]}
                       value={[value]}
                       onValueChange={(v) => onChange(v[0])}
                       disabled={isPending}

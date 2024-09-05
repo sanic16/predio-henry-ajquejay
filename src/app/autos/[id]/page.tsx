@@ -1,7 +1,5 @@
-import ProfileForm from "@/components/filter/FormExample";
-import FormFilter from "@/components/filter/FormFilter";
 import CarSlideshowThumbnails from "@/components/slideshows/CarSlideshowThumbnails";
-import { cars_data } from "@/data/cars";
+import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
 interface PageCarDetailsProps {
@@ -9,10 +7,14 @@ interface PageCarDetailsProps {
     id: string;
   };
 }
-export default function PageCarDetails({ params }: PageCarDetailsProps) {
-  console.log(params.id);
+export default async function PageCarDetails({ params }: PageCarDetailsProps) {
   const extractedId = params.id.split("-")[2];
-  const car = cars_data.find((car) => car.id === Number(extractedId));
+
+  const car = await prisma.car.findUnique({
+    where: {
+      id: extractedId,
+    },
+  });
 
   if (!car) {
     return notFound();
@@ -22,7 +24,7 @@ export default function PageCarDetails({ params }: PageCarDetailsProps) {
     <div className="custom-container">
       <div className="grid grid-cols-1 lg:grid-cols-2 mt-4">
         <div>
-          <CarSlideshowThumbnails images={car?.images} />
+          <CarSlideshowThumbnails images={car.images} />
         </div>
         <div>
           <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
@@ -68,8 +70,14 @@ export default function PageCarDetails({ params }: PageCarDetailsProps) {
 }
 
 export async function generateStaticParams() {
-  const ids = cars_data.map((car) => ({
-    id: `${car.model.make}-${car.model.year}-${car.id}`,
+  const cars = await prisma.car.findMany({
+    select: {
+      id: true,
+      modelMake: true,
+      modelYear: true,
+    },
+  });
+  return cars.map((car) => ({
+    id: `${car.modelMake}-${car.modelYear}-${car.id}`,
   }));
-  return ids;
 }
