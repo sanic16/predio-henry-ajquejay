@@ -13,40 +13,40 @@ interface CardCollectionProps {
 }
 
 const CardCollection: React.FC<CardCollectionProps> = ({
-  carsData: cars,
+  carsData: initialCars,
   transmissions,
   models,
   years,
 }) => {
-  // States for pagination
-  const [carsData, setCarsData] = useState<Car[]>(cars);
+  const itemsPerPage = 8; // Number of cars per page
+
+  const [filteredCars, setFilteredCars] = useState<Car[]>(initialCars); // Track the dataset (initially full set)
+  const [carsData, setCarsData] = useState<Car[]>(
+    filteredCars.slice(0, itemsPerPage)
+  ); // Current cars to display
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Number of cars per page
 
-  // Calculate the number of pages
-  const totalPages = Math.ceil(carsData.length / itemsPerPage);
+  // Load more cars and add to current data
+  const loadMoreCars = () => {
+    const nextPage = currentPage + 1;
+    const startIndex = (nextPage - 1) * itemsPerPage;
+    const moreCars = filteredCars.slice(startIndex, startIndex + itemsPerPage);
 
-  // Slice the data to get the cars for the current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentCars = carsData.slice(startIndex, startIndex + itemsPerPage);
-
-  // Handlers for pagination
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
+    // Update the cars to show and current page
+    setCarsData((prevCars) => [...prevCars, ...moreCars]);
+    setCurrentPage(nextPage);
   };
 
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
-
+  // Function to update cars when search/filter is applied
   const setSearchedCars = (cars: Car[]) => {
-    setCarsData(cars);
-    setCurrentPage(1); // Reset to first page when new data is filtered
+    // Update the filteredCars and reset pagination
+    setFilteredCars(cars);
+    setCarsData(cars.slice(0, itemsPerPage)); // Display first set of filtered cars
+    setCurrentPage(1); // Reset pagination
   };
+
+  // Determine if there are more cars to load
+  const hasMoreCars = currentPage * itemsPerPage < filteredCars.length;
 
   return (
     <section className="mt-8 md:mt-12 min-h-screen">
@@ -59,30 +59,21 @@ const CardCollection: React.FC<CardCollectionProps> = ({
           years={years}
         />
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {currentCars.map((car) => (
+          <div className="flex flex-col gap-4">
+            {carsData.map((car) => (
               <CardCar key={car.id} {...car} />
             ))}
           </div>
-          <div className="flex justify-between mt-4">
-            <button
-              onClick={prevPage}
-              disabled={currentPage === 1}
-              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-            >
-              Anterior
-            </button>
-            <span>
-              Página {currentPage} de {totalPages}
-            </span>
-            <button
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-            >
-              Siguiente
-            </button>
-          </div>
+          {hasMoreCars && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={loadMoreCars}
+                className="px-4 py-2 bg-gray-200 rounded"
+              >
+                Cargar más autos
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

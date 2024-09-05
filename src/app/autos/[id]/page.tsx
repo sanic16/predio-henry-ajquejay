@@ -23,7 +23,7 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
   }
 
   return (
-    <div className="custom-container">
+    <div className="">
       <BackButton />
       <div className="grid grid-cols-1 lg:grid-cols-2 mt-4">
         <div>

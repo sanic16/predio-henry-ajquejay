@@ -198,7 +198,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Seleccione una transmisión" />
+                        <SelectValue placeholder="Transmisión" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>

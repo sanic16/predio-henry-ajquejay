@@ -24,7 +24,7 @@ const CardCar: React.FC<CardCarSliderProps> = ({
   return (
     <Link
       href={`/autos/${modelMake}-${modelYear}-${id}`}
-      className="block color-gray-900 text-base font-bold cursor-pointer w-full min-w-[280px] sm:min-w-[320px]"
+      className="block color-gray-900  font-bold cursor-pointer w-full min-w-[280px] sm:min-w-[320px]"
     >
       <Card className="flex">
         <CardHeader className="w-full flex flex-col justify-between p-2">

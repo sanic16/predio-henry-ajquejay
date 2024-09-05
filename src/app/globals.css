@@ -22,7 +22,7 @@ body {
 
 /* custom-utilities.css */
 .custom-container {
-  @apply w-[90%] max-w-[1280px] mx-auto;
+  @apply w-[90%] lg:w-[80%] max-w-[1200px] mx-auto;
 
   /* Apply the smaller width for small screens */
   /* @screen sm {
