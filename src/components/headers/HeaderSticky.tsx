@@ -4,8 +4,8 @@ import React from "react";
 const HeaderSticky = () => {
   return (
     <>
-      <div className="navbar-container bg-gray-200 p-2 text-center">
-        <p>
+      <div className="navbar-container bg-gray-200 p-1 text-center">
+        <p className="text-sm">
           WhatsApp: 12341234 | Email: henryajquejay@gmail.com | Dirección:
           Chimaltenango
         </p>
