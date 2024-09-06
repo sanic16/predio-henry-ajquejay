@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     siteName: "Venta de autos",
     images: [
       {
-        hostname: "res.cloudinary.com",
-        url: "https://res.cloudinary.com/dczuv9eyw/image/upload/v1723565061/henry-ajquejay/c2uzh2jziyjmnay0j3dd",
+        hostname: "conesiee-static.codielectro.com",
+        url: "https://conesiee-static.codielectro.com/openGraph/Leonardo_Phoenix_Create_a_professional_animated_scene_for_a_ca_0.jpg",
         width: 1120,
         height: 1120,
       },
