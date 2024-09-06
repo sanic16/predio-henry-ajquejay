@@ -1,4 +1,4 @@
-import Banner from "@/components/Banner";
+import Banner from "@/components/banner/Banner";
 import CardsCarousel from "@/components/carousels/CardsCarousel";
 import CardCollection from "@/components/collections/CardCollection";
 import prisma from "@/lib/prisma";
