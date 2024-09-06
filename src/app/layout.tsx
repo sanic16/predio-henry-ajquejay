@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Venta de autos",
     images: [
       {
-        hostname: "https://res.cloudinary.com",
+        hostname: "res.cloudinary.com",
         url: "https://res.cloudinary.com/dczuv9eyw/image/upload/v1723565061/henry-ajquejay/c2uzh2jziyjmnay0j3dd",
         width: 1120,
         height: 1120,
