@@ -22,12 +22,6 @@ export const CarsContextProvider = ({
   const [cars, setCars] = useState<Car[]>(filteredCars.slice(0, itemsPerPage));
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const addCars = (newCars: Car[]) => {
-    setCars(newCars);
-    setFilteredCars(newCars.slice(0, 8));
-  };
 
   const loadMoreCars = () => {
     const nextPage = currentPage + 1;
