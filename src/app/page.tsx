@@ -1,6 +1,7 @@
 import Banner from "@/components/banner/Banner";
 import CardsCarousel from "@/components/carousels/CardsCarousel";
 import CardCollection from "@/components/collections/CardCollection";
+import CardCollectionWithContext from "@/components/collections/CardCollectionWithContext";
 import prisma from "@/lib/prisma";
 
 export default async function Home() {
@@ -20,7 +21,7 @@ export default async function Home() {
     <div className="mx-auto">
       <Banner />
       <CardsCarousel cars={lastFiveCars} />
-      <CardCollection
+      <CardCollectionWithContext
         carsData={carsData}
         models={models}
         years={years}

@@ -4,6 +4,7 @@ import SectionHeading from "../headings/SectionHeading";
 import FormFilter from "../filter/FormFilter";
 import { Car } from "@prisma/client";
 import { useState } from "react";
+import useContextCars from "@/context/cars-context";
 
 interface CardCollectionProps {
   carsData: Car[];
@@ -12,7 +13,7 @@ interface CardCollectionProps {
   years: number[];
 }
 
-const CardCollection: React.FC<CardCollectionProps> = ({
+const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
   carsData: initialCars,
   transmissions,
   models,
@@ -20,35 +21,18 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 }) => {
   const itemsPerPage = 8; // Number of cars per page
 
-  const [filteredCars, setFilteredCars] = useState<Car[]>(initialCars); // Track the dataset (initially full set)
+  const {
+    cars,
+    filteredCars,
+    addCars,
+    currentPage,
+    loadMoreCars,
+    hasMoreCars,
+  } = useContextCars();
 
-  const [carsData, setCarsData] = useState<Car[]>(
-    filteredCars.slice(0, itemsPerPage)
-  ); // Current cars to display
-  const [currentPage, setCurrentPage] = useState(1);
   const [showFilterForm, setShowFilterForm] = useState(false); // State to toggle filter form visibility
 
-  // Load more cars and add to current data
-  const loadMoreCars = () => {
-    const nextPage = currentPage + 1;
-    const startIndex = (nextPage - 1) * itemsPerPage;
-    const moreCars = filteredCars.slice(startIndex, startIndex + itemsPerPage);
-
-    // Update the cars to show and current page
-    setCarsData((prevCars) => [...prevCars, ...moreCars]);
-    setCurrentPage(nextPage);
-  };
-
-  // Function to update cars when search/filter is applied
-  const setSearchedCars = (cars: Car[]) => {
-    // Update the filteredCars and reset pagination
-    setFilteredCars(cars);
-    setCarsData(cars.slice(0, itemsPerPage)); // Display first set of filtered cars
-    setCurrentPage(1); // Reset pagination
-  };
-
   // Determine if there are more cars to load
-  const hasMoreCars = currentPage * itemsPerPage < filteredCars.length;
 
   return (
     <section className="mt-8 md:mt-12 min-h-screen">
@@ -76,7 +60,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
         <div>
           <div className="flex flex-col gap-4">
-            {carsData.map((car) => (
+            {cars.map((car) => (
               <CardCar key={car.id} {...car} />
             ))}
           </div>
@@ -96,4 +80,4 @@ const CardCollection: React.FC<CardCollectionProps> = ({
   );
 };
 
-export default CardCollection;
+export default CardCollectionWithContext;

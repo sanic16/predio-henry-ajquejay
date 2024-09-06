@@ -25,21 +25,20 @@ import { Slider } from "../ui/slider";
 import { search } from "@/actions";
 import { useState, useTransition } from "react";
 import { Car } from "@prisma/client";
+import useContextCars from "@/context/cars-context";
 
 interface FormFilterProps {
-  setSearchedCars: (cars: Car[]) => void;
   transmissions: string[];
   models: string[];
   years: number[];
 }
 
 const FormFilter: React.FC<FormFilterProps> = ({
-  setSearchedCars,
   models,
   transmissions,
   years,
 }) => {
-  const [carsData, setCarsData] = useState<Car[]>([]);
+  const { setSearchedCars } = useContextCars();
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof CarFilterSearchSchema>>({
