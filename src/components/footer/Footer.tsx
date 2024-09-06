@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="navbar-container pt-8 mt-12  bg-gray-800 text-white border-t-2 border-t-gray-800">
+    <footer className="container mx-auto max-w-[1280px] pt-8 mt-12  bg-gray-800 text-white border-t-2 border-t-gray-800">
       <div className="px-4 flex flex-col gap-6 items-center text-center lg:text-left lg:flex-row lg:gap-0 lg:justify-between">
         <div className="max-w-80">
           <h3 className="text-2xl font-bold bg-gradient-text bg-clip-text text-transparent">

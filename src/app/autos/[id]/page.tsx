@@ -23,7 +23,7 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
   }
 
   return (
-    <div className="">
+    <div className="container mx-auto max-w-[1280px] px-2">
       <BackButton />
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-4 gap-8">
         <div className="col-span-2">

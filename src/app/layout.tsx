@@ -50,7 +50,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <CarsContextProvider initialCars={cars}>
           <HeaderSticky />
-          <main className="custom-container">{children}</main>
+          <main className="container mx-auto max-w-[1280px]">{children}</main>
           <Footer />
         </CarsContextProvider>
         <Toaster />

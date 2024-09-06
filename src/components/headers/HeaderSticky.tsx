@@ -4,14 +4,14 @@ import React from "react";
 const HeaderSticky = () => {
   return (
     <>
-      <div className="navbar-container bg-gray-200 p-1 text-center">
+      <div className="container mx-auto max-w-[1280px] bg-gray-200 p-1 text-center">
         <p className="text-sm">
           WhatsApp: 12341234 | Email: henryajquejay@gmail.com | Dirección:
           Chimaltenango
         </p>
       </div>
 
-      <div className="navbar-container bg-gray-800 text-white sticky top-0 z-50">
+      <div className="container mx-auto max-w-[1280px] bg-gray-800 text-white sticky top-0 z-50">
         <ul className="flex justify-center space-x-6 py-4">
           <li>
             <Link href="/" className="hover:text-gray-400">

@@ -21,7 +21,7 @@ export default async function Home() {
     },
   });
   return (
-    <div className="mx-auto">
+    <div>
       <Banner />
       <CardsCarousel cars={lastFiveCars} />
       <CardCollectionWithContext

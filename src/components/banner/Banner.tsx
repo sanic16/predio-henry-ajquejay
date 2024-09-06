@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import Image from "next/image";
-import "./custom.css";
+import "./banner.css";
 
 const Banner = () => {
   let bannerText = `Descubre la selección más exclusiva de vehículos y encuentra el auto
@@ -25,11 +25,11 @@ const Banner = () => {
           de tus sueños.`;
   }
   return (
-    <div className="relative mt-4">
+    <div className="relative banner">
       <Swiper
         navigation
         modules={[Navigation, EffectFade, Autoplay]}
-        className="w-full rounded-lg"
+        className="w-full rounded-lg" // Scoped styles applied here
         effect="fade"
         autoplay={{ delay: 5000 }}
         loop
