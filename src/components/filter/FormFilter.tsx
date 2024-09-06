@@ -78,12 +78,13 @@ const FormFilter: React.FC<FormFilterProps> = ({
       //   });
     });
     toast({
-      title: "You submitted the following values:",
+      title: "Buscando con los siguientes datos",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
+      duration: 3000,
     });
   }
 

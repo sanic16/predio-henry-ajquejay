@@ -25,8 +25,8 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
   return (
     <div className="">
       <BackButton />
-      <div className="grid grid-cols-1 lg:grid-cols-2 mt-4">
-        <div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-4 gap-8">
+        <div className="col-span-2">
           <CarSlideshowThumbnails images={car.images} />
         </div>
         <div>

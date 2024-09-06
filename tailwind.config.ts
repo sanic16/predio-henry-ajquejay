@@ -68,6 +68,9 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      gridTemplateColumns: {
+        two: "repeat(2, minmax(0, 1fr))",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
