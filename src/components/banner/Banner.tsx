@@ -46,7 +46,7 @@ const Banner = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute bottom-0 left-0 right-0 z-[999] bg-black/70 text-white p-2 sm:p-3 md:p-4">
+      <div className="absolute bottom-0 left-0 right-0 z-[1] bg-black/70 text-white p-2 sm:p-3 md:p-4">
         <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center text-gray-200">
           Bienvenido a Tu Destino Automotriz
         </h2>
