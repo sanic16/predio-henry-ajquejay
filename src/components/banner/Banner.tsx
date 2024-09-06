@@ -36,7 +36,7 @@ const Banner = () => {
       >
         {[carImg1, carImg2, carImg3, carImg4, carImg5].map((img, index) => (
           <SwiperSlide key={index}>
-            <div className="relative flex h-[50vh] md:h-[75vh] w-full items-center justify-center">
+            <div className="relative flex h-[50vh] sm:h-[75vh] w-full items-center justify-center">
               <Image
                 src={img}
                 alt="Car"
@@ -46,11 +46,11 @@ const Banner = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute bottom-0 left-0 right-0 z-[999] bg-black/70 text-white p-4">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-200">
+      <div className="absolute bottom-0 left-0 right-0 z-[999] bg-black/70 text-white p-2 sm:p-3 md:p-4">
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center text-gray-200">
           Bienvenido a Tu Destino Automotriz
         </h2>
-        <p className="text-base md:text-lg text-center text-gray-100 mt-2">
+        <p className="text-sm sm:text-base md:text-lg text-center text-gray-100 mt-1 md:mt-2">
           {bannerText}
         </p>
       </div>
