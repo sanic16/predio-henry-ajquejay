@@ -7,7 +7,7 @@ interface SectionHeadingProps {
 const SectionHeading: React.FC<SectionHeadingProps> = ({ title, align }) => {
   return (
     <div className={`py-8 text-${align}`}>
-      <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 tracking-wide">
+      <h2 className="text-4xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 ">
         {title}
       </h2>
       <div

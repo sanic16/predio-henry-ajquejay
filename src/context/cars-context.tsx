@@ -17,7 +17,7 @@ export const CarsContextProvider = ({
   children: React.ReactNode;
   initialCars: Car[];
 }) => {
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
   const [filteredCars, setFilteredCars] = useState<Car[]>(initialCars);
   const [cars, setCars] = useState<Car[]>(filteredCars.slice(0, itemsPerPage));
 

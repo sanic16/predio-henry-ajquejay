@@ -38,7 +38,7 @@ const CardCarSlider: React.FC<CardCarSliderProps> = ({ car }) => {
         <p className="text-lg font-semibold">Q {car.price}</p>
         <Link
           href={`/autos/${car.modelMake}-${car.modelYear}-${car.id}`}
-          className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded-lg transition-all"
+          className="bg-gray-200 hover:bg-gray-400 text-gray-900 py-1 px-3 rounded-lg transition-all"
         >
           Ver más
         </Link>

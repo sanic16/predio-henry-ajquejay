@@ -39,9 +39,13 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1fr,3fr] gap-4 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
         {/* Show the form based on state in small screens, always show in md and larger */}
-        <div className={`${showFilterForm ? "block" : "hidden"} md:block`}>
+        <div
+          className={`col-span-1 ${
+            showFilterForm ? "block" : "hidden"
+          } md:block`}
+        >
           <FormFilter
             models={models}
             transmissions={transmissions}
@@ -49,8 +53,8 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
           />
         </div>
 
-        <div>
-          <div className="flex flex-col gap-4">
+        <div className="col-span-3">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-2">
             {cars.map((car) => (
               <CardCar key={car.id} {...car} />
             ))}
@@ -59,7 +63,7 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
             <div className="flex justify-center mt-4">
               <button
                 onClick={loadMoreCars}
-                className="px-4 py-2 bg-gray-200 rounded"
+                className="px-4 py-2 bg-gray-800 text-white rounded"
               >
                 Cargar más autos
               </button>
