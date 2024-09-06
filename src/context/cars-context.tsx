@@ -5,9 +5,6 @@ import { Car } from "@prisma/client";
 
 export const CarsContext = createContext<CarsContextType>({
   cars: [],
-  filteredCars: [],
-  currentPage: 1,
-  addCars: () => {},
   loadMoreCars: () => {},
   setSearchedCars: () => {},
   hasMoreCars: false,
@@ -53,12 +50,9 @@ export const CarsContextProvider = ({
     <CarsContext.Provider
       value={{
         cars,
-        currentPage,
-        filteredCars,
-        addCars,
         loadMoreCars,
-        setSearchedCars,
         hasMoreCars,
+        setSearchedCars,
       }}
     >
       {children}

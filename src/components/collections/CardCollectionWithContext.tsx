@@ -19,16 +19,7 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
   models,
   years,
 }) => {
-  const itemsPerPage = 8; // Number of cars per page
-
-  const {
-    cars,
-    filteredCars,
-    addCars,
-    currentPage,
-    loadMoreCars,
-    hasMoreCars,
-  } = useContextCars();
+  const { cars, loadMoreCars, hasMoreCars } = useContextCars();
 
   const [showFilterForm, setShowFilterForm] = useState(false); // State to toggle filter form visibility
 
