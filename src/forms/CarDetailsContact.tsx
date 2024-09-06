@@ -20,6 +20,9 @@ const CarDetailsContact = () => {
   const form = useForm<z.infer<typeof CarContactSchema>>({
     resolver: zodResolver(CarContactSchema),
   });
+
+  function onsubmit(data: z.infer<typeof CarContactSchema>) {}
+
   return <div>CarDetailsContact</div>;
 };
 

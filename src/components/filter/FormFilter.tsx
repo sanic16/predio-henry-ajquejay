@@ -52,8 +52,17 @@ const FormFilter: React.FC<FormFilterProps> = ({
     startTransition(() => {
       search(data)
         .then((data) => {
-          if (data) {
+          if (data.length > 0) {
             setSearchedCars(data);
+            console.log(data);
+          } else {
+            toast({
+              variant: "destructive",
+              title: "Sin resultados",
+              description:
+                "No se encontraron resultados con los datos ingresados.",
+              duration: 2500,
+            });
           }
         })
         .catch((error) => {
@@ -77,15 +86,15 @@ const FormFilter: React.FC<FormFilterProps> = ({
       //     });
       //   });
     });
-    toast({
-      title: "Buscando con los siguientes datos",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      duration: 3000,
-    });
+    // toast({
+    //   title: "Buscando con los siguientes datos",
+    //   description: (
+    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    //   duration: 3000,
+    // });
   }
 
   return (
@@ -98,7 +107,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
               name="price"
               render={({ field: { value, onChange } }) => (
                 <FormItem>
-                  <FormLabel>Price - {value}</FormLabel>
+                  <FormLabel>Precio - {value}</FormLabel>
                   <FormControl>
                     <Slider
                       min={30000}

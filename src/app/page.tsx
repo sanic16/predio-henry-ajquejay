@@ -9,8 +9,12 @@ export default async function Home() {
   const transmissions = Array.from(
     new Set(carsData.map((car) => car.transmission))
   );
-  const models = Array.from(new Set(carsData.map((car) => car.modelMake)));
-  const years = Array.from(new Set(carsData.map((car) => car.modelYear)));
+  const models = Array.from(
+    new Set(carsData.map((car) => car.modelMake))
+  ).sort();
+  const years = Array.from(new Set(carsData.map((car) => car.modelYear))).sort(
+    (a, b) => b - a
+  );
   const lastFiveCars = await prisma.car.findMany({
     take: 6,
     orderBy: {
