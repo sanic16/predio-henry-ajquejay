@@ -35,10 +35,12 @@ const CardCarSlider: React.FC<CardCarSliderProps> = ({ car }) => {
         </div>
       </CardContent>
       <CardFooter className="bg-gray-900 p-4 text-white flex items-center justify-between">
-        <p className="text-lg font-semibold">Q {car.price}</p>
+        <p className="text-lg font-semibold">
+          Q {new Intl.NumberFormat().format(car.price)}
+        </p>
         <Link
           href={`/autos/${car.modelMake}-${car.modelYear}-${car.id}`}
-          className="bg-gray-200 hover:bg-gray-400 text-gray-900 py-1 px-3 rounded-lg transition-all"
+          className="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded-lg transition-all"
         >
           Ver más
         </Link>
