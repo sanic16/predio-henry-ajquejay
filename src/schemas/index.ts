@@ -16,8 +16,18 @@ export const CarFilterSearchSchema = z.object({
 });
 
 export const CarContactSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  phone: z.string(),
-  message: z.string(),
+  name: z.string({
+    message: "Nombre requerido.",
+  }),
+  email: z
+    .string({
+      message: "Correo electrónico requerido.",
+    })
+    .email({ message: "Correo electrónico inválido." }),
+  phone: z.string({
+    message: "Número de teléfono requerido.",
+  }),
+  message: z.string({
+    message: "Mensaje requerido.",
+  }),
 });

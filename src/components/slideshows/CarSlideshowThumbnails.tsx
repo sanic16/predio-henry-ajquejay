@@ -22,7 +22,7 @@ const CarSlideshowThumbnails: React.FC<CarSlideshowThumbnailsProps> = ({
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperOr | null>(null);
 
   return (
-    <div className="container mx-auto">
+    <div>
       <Swiper
         loop
         navigation

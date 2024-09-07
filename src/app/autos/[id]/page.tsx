@@ -1,5 +1,6 @@
 import BackButton from "@/components/buttons/BackButton";
 import CarSlideshowThumbnails from "@/components/slideshows/CarSlideshowThumbnails";
+import CarDetailsContact from "@/forms/CarDetailsContact";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -30,7 +31,12 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
           <CarSlideshowThumbnails images={car.images} />
         </div>
         <div>
-          <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+          <CarDetailsContact />
+        </div>
+      </div>
+      <div className="mt-4">
+        <div>
+          <div className="w-full mx-auto bg-white shadow-md rounded-lg overflow-hidden">
             <div className="p-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-2">
                 {car.title}
@@ -78,7 +84,7 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
               </div>
             </div>
             <div className="p-6">
-              <button className="w-full py-3 bg-blue-600 text-white text-xl font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <button className="py-3 px-4 bg-blue-600 text-white text-xl font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {car.price.toLocaleString("es-GT", {
                   style: "currency",
                   currency: "GTQ",
