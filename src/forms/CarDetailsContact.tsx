@@ -19,10 +19,12 @@ import { Textarea } from "@/components/ui/textarea";
 import FormError from "@/components/messages/FormError";
 import FormSuccess from "@/components/messages/FormSuccess";
 import { contactAction } from "@/actions/contact";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 const CarDetailsContact = () => {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>();
+  const [success, setSuccess] = useState<string | undefined>();
 
   const form = useForm<z.infer<typeof CarContactSchema>>({
     resolver: zodResolver(CarContactSchema),
@@ -35,14 +37,16 @@ const CarDetailsContact = () => {
   });
 
   function onsubmit(data: z.infer<typeof CarContactSchema>) {
+    setError("");
+    setSuccess("");
     startTransition(() => {
       contactAction(data)
         .then((res) => {
           if ("error" in res) {
-            console.log(res.error);
+            setError(res.error);
           }
           if ("success" in res) {
-            console.log(res.success);
+            setSuccess(res.success);
           }
         })
         .catch((error) => {});
@@ -127,6 +131,8 @@ const CarDetailsContact = () => {
               )}
             />
           </div>
+          <FormError message={error} />
+          <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={isPending}>
             Contactar
           </Button>

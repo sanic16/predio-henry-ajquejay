@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import HeaderSticky from "@/components/headers/HeaderSticky";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer/Footer";
 import { CarsContextProvider } from "@/context/cars-context";
 import prisma from "@/lib/prisma";
+import Navbar from "@/components/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +49,7 @@ export default async function RootLayout({
     <html lang="es">
       <body className={inter.className}>
         <CarsContextProvider initialCars={cars}>
-          <HeaderSticky />
+          <Navbar />
           <main className="container mx-auto max-w-[1280px]">{children}</main>
           <Footer />
         </CarsContextProvider>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const HeaderSticky = () => {
+const Navbar = () => {
   return (
     <>
       <div className="container mx-auto max-w-[1280px] bg-gray-200 p-1 text-center">
@@ -19,14 +19,14 @@ const HeaderSticky = () => {
             </Link>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">
+            <Link href="/nosotros" className="hover:text-gray-400">
               Nosotros
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-400">
+            <Link href="/contacto" className="hover:text-gray-400">
               Contacto
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -34,4 +34,4 @@ const HeaderSticky = () => {
   );
 };
 
-export default HeaderSticky;
+export default Navbar;
