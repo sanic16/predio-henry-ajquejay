@@ -17,7 +17,7 @@ interface CardsCarouselProps {
 
 const CardsCarousel: React.FC<CardsCarouselProps> = ({ cars }) => {
   return (
-    <section className="px-2 mt-8 md:mt-12">
+    <section className="px-2 lg:px-0 mt-8 md:mt-12">
       <SectionHeading title="Lo Último" align="left" />
       <div>
         <Carousel

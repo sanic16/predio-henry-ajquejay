@@ -54,7 +54,7 @@ const CarDetailsContact = () => {
   }
 
   return (
-    <div className="bg-white p-4 rounded-xl">
+    <div className="bg-white p-2 md:p-4 rounded-lg">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onsubmit)} className="space-y-6">
           <div className="space-y-4">
@@ -122,7 +122,7 @@ const CarDetailsContact = () => {
                     <Textarea
                       {...field}
                       placeholder="Estoy interesado en este vehículo..."
-                      className="resize-none"
+                      className="resize-none h-32"
                       disabled={isPending}
                     />
                   </FormControl>
