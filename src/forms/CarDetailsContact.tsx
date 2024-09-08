@@ -21,7 +21,16 @@ import FormSuccess from "@/components/messages/FormSuccess";
 import { contactAction } from "@/actions/contact";
 import { useState, useTransition } from "react";
 
-const CarDetailsContact = () => {
+interface CarDetailsContactProps {
+  carId?: string;
+  title: string;
+  messagePlaceholder: string;
+}
+
+const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
+  title,
+  messagePlaceholder,
+}) => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
@@ -55,6 +64,7 @@ const CarDetailsContact = () => {
 
   return (
     <div className="bg-white p-2 md:p-4 rounded-lg">
+      <h2 className="text-2xl font-semibold mb-4">{title}</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onsubmit)} className="space-y-6">
           <div className="space-y-4">
@@ -67,7 +77,7 @@ const CarDetailsContact = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Nombre"
+                      placeholder="Juan Pérez"
                       type="text"
                       disabled={isPending}
                       className="jf"
@@ -108,7 +118,7 @@ const CarDetailsContact = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="12345678"
+                      placeholder="55202455"
                       type="text"
                       disabled={isPending}
                     />
@@ -126,7 +136,7 @@ const CarDetailsContact = () => {
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Estoy interesado en este vehículo..."
+                      placeholder={messagePlaceholder}
                       className="resize-none h-32"
                       disabled={isPending}
                     />
@@ -139,7 +149,7 @@ const CarDetailsContact = () => {
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={isPending}>
-            Contactar
+            Enviar
           </Button>
         </form>
       </Form>

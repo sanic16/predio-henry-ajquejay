@@ -31,7 +31,11 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
           <CarSlideshowThumbnails images={car.images} />
         </div>
         <div className="col-span-1 shadow-md">
-          <CarDetailsContact />
+          <CarDetailsContact
+            title="Contactar al vendedor"
+            messagePlaceholder={`Hola, estoy interesado en el ${car.title} ${car.modelYear}`}
+            carId={car.id}
+          />
         </div>
         <div className="col-span-1 row-start-2 row-end-3 md:row-start-auto md:row-end-auto md:col-span-3 shadow-md">
           <CarDetails car={car} />

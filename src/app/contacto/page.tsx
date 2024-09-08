@@ -6,16 +6,19 @@ export default function page() {
   return (
     <>
       <PageHeader title="Contacto" className="bg-contact-header" />
-      <div className="px-2 lg:px-0 mt-8">
+      <div className="px-2 lg:px-0 mt-8 md:mt-16">
         <div>
           <p className="text-lg text-gray-700">
             No dudes en contactarnos si tienes alguna pregunta o inquietud.
             Estamos aquí para ayudarte con lo que necesites.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 py-8">
-          <div className="bg-white shadow-md rounded-lg p-0 lg:p-6 order-2 lg:order-1">
-            <CarDetailsContact />
+        <div className="grid grid-cols-1 md:grid-cols-2 py-4 gap-x-4">
+          <div className="bg-white shadow-md rounded-lg p-0 lg:p-4 order-2 lg:order-1">
+            <CarDetailsContact
+              title="Envíanos un mensaje"
+              messagePlaceholder="Hola, me interesa saber más sobre..."
+            />
           </div>
           <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col">
             <iframe
