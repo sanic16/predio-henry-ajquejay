@@ -6,7 +6,7 @@ export default function page() {
   return (
     <>
       <PageHeader title="Contacto" className="bg-contact-header" />
-      <div className="px-2 lg:px-0 mt-8 md:mt-16">
+      <div className="px-2 xl:px-0 mt-8 md:mt-16">
         <div>
           <p className="text-lg text-gray-700">
             No dudes en contactarnos si tienes alguna pregunta o inquietud.

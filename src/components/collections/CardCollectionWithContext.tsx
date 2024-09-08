@@ -11,6 +11,8 @@ interface CardCollectionProps {
   transmissions: string[];
   models: string[];
   years: number[];
+  minPrice: number;
+  maxPrice: number;
 }
 
 const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
@@ -18,6 +20,8 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
   transmissions,
   models,
   years,
+  minPrice,
+  maxPrice,
 }) => {
   const { cars, loadMoreCars, hasMoreCars } = useContextCars();
 
@@ -26,7 +30,7 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
   // Determine if there are more cars to load
 
   return (
-    <section className="px-2 lg:px-0 mt-8 md:mt-12 min-h-screen">
+    <section className="px-2 xl:px-0 mt-8 md:mt-12 min-h-screen">
       <SectionHeading title="Todos los autos" align="left" />
 
       {/* Button to show/hide filter form on small screens */}
@@ -50,6 +54,8 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
             models={models}
             transmissions={transmissions}
             years={years}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         </div>
 

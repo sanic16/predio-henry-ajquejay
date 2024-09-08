@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,20 +22,23 @@ import { Button } from "../ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Slider } from "../ui/slider";
 import { search } from "@/actions";
-import { useState, useTransition } from "react";
-import { Car } from "@prisma/client";
+import { useTransition } from "react";
 import useContextCars from "@/context/cars-context";
 
 interface FormFilterProps {
   transmissions: string[];
   models: string[];
   years: number[];
+  minPrice: number;
+  maxPrice: number;
 }
 
 const FormFilter: React.FC<FormFilterProps> = ({
   models,
   transmissions,
   years,
+  minPrice,
+  maxPrice,
 }) => {
   const { setSearchedCars } = useContextCars();
   const [isPending, startTransition] = useTransition();
@@ -44,7 +46,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
   const form = useForm<z.infer<typeof CarFilterSearchSchema>>({
     resolver: zodResolver(CarFilterSearchSchema),
     defaultValues: {
-      price: 300000,
+      price: maxPrice,
     },
   });
 
@@ -68,33 +70,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
         .catch((error) => {
           console.error(error);
         });
-      // search(data)
-      //   .then((cars) => {
-      //     if ("error" in cars) {
-      //       toast({ title: "Error", description: cars.error });
-      //     } else {
-      //       setCarsData(cars); // Uncomment and use this if needed
-      //       console.log(cars);
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     // Handle potential errors from the search function
-      //     console.error(error);
-      //     toast({
-      //       title: "Error",
-      //       description: "An unexpected error occurred.",
-      //     });
-      //   });
     });
-    // toast({
-    //   title: "Buscando con los siguientes datos",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    //   duration: 3000,
-    // });
   }
 
   return (
@@ -110,17 +86,14 @@ const FormFilter: React.FC<FormFilterProps> = ({
                   <FormLabel>Precio - {value}</FormLabel>
                   <FormControl>
                     <Slider
-                      min={30000}
-                      max={500000}
+                      min={minPrice}
+                      max={maxPrice}
                       step={10000}
                       value={[value]}
                       onValueChange={(v) => onChange(v[0])}
                       disabled={isPending}
                     />
                   </FormControl>
-                  {/* <FormDescription>
-                    This is a description for the price.
-                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -150,9 +123,6 @@ const FormFilter: React.FC<FormFilterProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
-                  {/* <FormDescription>
-                    Seleccione la marca del auto que desea buscar.
-                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -186,9 +156,6 @@ const FormFilter: React.FC<FormFilterProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
-                  {/* <FormDescription>
-                    En qué año fue fabricado el auto que desea buscar.
-                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -225,9 +192,6 @@ const FormFilter: React.FC<FormFilterProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
-                  {/* <FormDescription>
-                    Seleccione el tipo de transmisión del auto que desea buscar.
-                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}

@@ -20,6 +20,18 @@ export default async function Home() {
       createdAt: "desc",
     },
   });
+  const minPrice = await prisma.car.aggregate({
+    _min: {
+      price: true,
+    },
+  });
+
+  const maxPrice = await prisma.car.aggregate({
+    _max: {
+      price: true,
+    },
+  });
+
   return (
     <div>
       <Banner />
@@ -29,6 +41,8 @@ export default async function Home() {
         models={models}
         years={years}
         transmissions={transmissions}
+        minPrice={minPrice._min.price || 0}
+        maxPrice={maxPrice._max.price || 500000}
       />
     </div>
   );
