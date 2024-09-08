@@ -23,6 +23,7 @@ const CardCar: React.FC<CardCarSliderProps> = ({
             src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${images[0]}`}
             alt={title}
             className="block w-full h-full object-cover"
+            sizes="(max-width: 640px) 560px, 315px, (max-width: 1024px) 400px, 225px ,(max-width: 1280px) 280px, 158px"
             fill
           />
         </div>

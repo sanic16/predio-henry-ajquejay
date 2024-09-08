@@ -39,6 +39,9 @@ const Banner = () => {
             <div className="relative flex h-[50vh] sm:h-[75vh] w-full items-center justify-center">
               <Image
                 src={img}
+                width={1280}
+                height={960}
+                sizes="(max-width: 576px) 100vw,(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw"
                 alt="Car"
                 className="block h-full w-full object-cover"
               />
