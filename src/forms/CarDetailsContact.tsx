@@ -63,13 +63,14 @@ const CarDetailsContact = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nombre</FormLabel>
+                  <FormLabel className="text-base">Nombre</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       placeholder="Nombre"
                       type="text"
                       disabled={isPending}
+                      className="jf"
                     />
                   </FormControl>
                   <FormMessage />
@@ -81,7 +82,9 @@ const CarDetailsContact = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Correo Electrónico</FormLabel>
+                  <FormLabel className="text-base">
+                    Correo Electrónico
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -99,7 +102,9 @@ const CarDetailsContact = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Número de Teléfono</FormLabel>
+                  <FormLabel className="text-base">
+                    Número de Teléfono
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -117,7 +122,7 @@ const CarDetailsContact = () => {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mensaje</FormLabel>
+                  <FormLabel className="text-base">Mensaje</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
