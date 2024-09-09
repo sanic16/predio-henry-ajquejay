@@ -7,6 +7,18 @@ import { getUserByEmail } from "./queries/auth";
 export default {
   providers: [
     CredentialsProvider({
+      name: "Credenciales",
+      credentials: {
+        username: {
+          label: "Correo electrónico",
+          type: "email",
+          placeholder: "Correo Electrónico",
+        },
+        password: {
+          label: "Contraseña",
+          type: "password",
+        },
+      },
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials);
 

@@ -12,6 +12,6 @@ export const {
   trustHost: true,
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
-  ...authConfig,
+  providers: authConfig.providers,
   callbacks: {},
 });

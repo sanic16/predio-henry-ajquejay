@@ -8,7 +8,10 @@ import {
 } from "@/routes";
 import { NextResponse } from "next/server";
 
-const { auth } = NextAuth(authConfig);
+const { auth } = NextAuth({
+  providers: authConfig.providers,
+  trustHost: true,
+});
 
 export default auth((req) => {
   const { nextUrl } = req;
