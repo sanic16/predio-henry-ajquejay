@@ -1,9 +1,9 @@
-import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { signOutAction } from "@/actions/auth";
+import { auth, signOut } from "@/auth";
 
-const Navbar = () => {
+const AuthNavbar = async () => {
+  const session = await auth();
   return (
     <>
       <div className="container mx-auto max-w-[1280px] bg-gray-200 p-1 text-center">
@@ -16,35 +16,39 @@ const Navbar = () => {
       <div className="container mx-auto max-w-[1280px] bg-gray-800 text-white sticky top-0 z-50 flex items-center justify-between px-4">
         <ul className="flex justify-center space-x-6 py-4">
           <li>
-            <Link href="/" className="hover:text-gray-400">
-              Inicio
+            <Link href="/perfil" className="hover:text-gray-400">
+              Perfil
             </Link>
           </li>
           <li>
-            <Link href="/nosotros" className="hover:text-gray-400">
-              Nosotros
+            <Link href="/crear" className="hover:text-gray-400">
+              Crear
             </Link>
           </li>
           <li>
-            <Link href="/contacto" className="hover:text-gray-400">
-              Contacto
+            <Link href="/actualizar" className="hover:text-gray-400">
+              Actualizar
             </Link>
           </li>
         </ul>
 
         <div>
-          <Button variant="link" asChild>
-            <Link
-              href="/auth/login"
-              className="bg-white text-black px-4 py-2 rounded-sm"
-            >
-              Iniciar sesión
-            </Link>
-          </Button>
+          <form
+            action={async () => {
+              "use server";
+              await signOut({
+                redirectTo: "/auth/login",
+              });
+            }}
+          >
+            <Button type="submit" variant="secondary">
+              Cerrar sesión
+            </Button>
+          </form>
         </div>
       </div>
     </>
   );
 };
 
-export default Navbar;
+export default AuthNavbar;

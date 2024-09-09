@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import Footer from "@/components/footer/Footer";
 import { CarsContextProvider } from "@/context/cars-context";
 import prisma from "@/lib/prisma";
-import Navbar from "@/components/navbar/Navbar";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,11 +47,11 @@ export default async function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <CarsContextProvider initialCars={cars}>
-          <Navbar />
-          <main className="container mx-auto max-w-[1280px]">{children}</main>
-          <Footer />
-        </CarsContextProvider>
+        <SessionProvider>
+          <CarsContextProvider initialCars={cars}>
+            {children}
+          </CarsContextProvider>
+        </SessionProvider>
         <Toaster />
       </body>
     </html>
