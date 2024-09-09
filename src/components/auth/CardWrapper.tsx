@@ -12,28 +12,22 @@ import BackButton from "./BackButton";
 interface CardWrapperProps {
   children: React.ReactNode;
   headerLabel: string;
-  backButtonLabel: string;
-  backButtonHref: string;
-  showSocial?: boolean;
+  // backButtonLabel: string;
+  // backButtonHref: string;
+  // showSocial?: boolean;
 }
 
-const CardWrapper: React.FC<CardWrapperProps> = ({
-  children,
-  headerLabel,
-  backButtonHref,
-  backButtonLabel,
-  showSocial,
-}) => {
+const CardWrapper: React.FC<CardWrapperProps> = ({ children, headerLabel }) => {
   return (
-    <Card className="w-[400px]">
+    <Card className="w-full max-w-[400px] sm:w-[400px]">
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
       <CardContent>{children}</CardContent>
-      {showSocial && <Social />}
-      <CardFooter>
+      {/* {showSocial && <Social />} */}
+      {/* <CardFooter>
         <BackButton href={backButtonHref} label={backButtonLabel} />
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

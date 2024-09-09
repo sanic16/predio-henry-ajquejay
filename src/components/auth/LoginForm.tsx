@@ -50,9 +50,8 @@ const LoginForm = () => {
   return (
     <CardWrapper
       headerLabel="Bienvenido de otra vez"
-      backButtonLabel="Aún no tienes cuenta?"
-      backButtonHref="/auth/register"
-      showSocial
+      // backButtonLabel="Aún no tienes cuenta?"
+      // backButtonHref="/auth/register"
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
