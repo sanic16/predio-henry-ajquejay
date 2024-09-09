@@ -50,12 +50,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <CardWrapper
-      headerLabel="Regístrate"
-      backButtonLabel="Ya tienes cuenta?"
-      backButtonHref="/auth/login"
-      showSocial
-    >
+    <CardWrapper headerLabel="Regístrate">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
