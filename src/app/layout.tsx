@@ -43,7 +43,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cars = await prisma.car.findMany({});
+  const cars = await prisma.car.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    where: {
+      published: true,
+    },
+  });
   return (
     <html lang="es">
       <body className={inter.className}>

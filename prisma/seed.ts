@@ -20,6 +20,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 10000,
     engineType: "PETROL",
     engineCapacity: 1.6,
+    published: true,
   },
   {
     title: "Ford F150 XLT Cabina Sencilla",
@@ -39,6 +40,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 3.5,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "Volkswagen Nivus Highline",
@@ -58,6 +60,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "DIESEL",
     engineCapacity: 1.0,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "Renault Kwid Intense",
@@ -77,6 +80,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.0,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "Renault Stepway Intense",
@@ -96,6 +100,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.6,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "Kia Picanto X-Line 1.25 MT",
@@ -115,6 +120,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.25,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "GMC Acadia SLE",
@@ -135,6 +141,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 50000,
     engineType: "PETROL",
     engineCapacity: 3.6,
+    published: true,
   },
   {
     title: "Chevrolet Traverse LT Sport Utility 4D",
@@ -156,6 +163,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 70000,
     engineType: "PETROL",
     engineCapacity: 3.6,
+    published: true,
   },
   {
     title: "Chevrolet Trax LS Sport Utility 4D",
@@ -176,6 +184,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 60000,
     engineType: "PETROL",
     engineCapacity: 1.4,
+    published: true,
   },
   {
     title: "Chevrolet Jeep Cherokee Trailhawk L Plus 4X4",
@@ -199,6 +208,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 50000,
     engineType: "DIESEL",
     engineCapacity: 2.0,
+    published: true,
   },
   {
     title: "Nissan Altima 2.5 SV",
@@ -218,6 +228,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 50000,
     engineType: "PETROL",
     engineCapacity: 2.5,
+    published: true,
   },
   {
     title: "Nissan Altima 2.5 S",
@@ -236,6 +247,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 60000,
     engineType: "PETROL",
     engineCapacity: 2.5,
+    published: true,
   },
   {
     title: "Nissan Versa Advance",
@@ -254,6 +266,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 12000,
     engineType: "DIESEL",
     engineCapacity: 1.6,
+    published: true,
   },
   {
     title: "Ford F150 XLT Cabina Sencilla",
@@ -273,6 +286,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 3.5,
     location: "Guatemala City",
+    published: true,
   },
   {
     title: "Volkswagen Nivus Highline",
@@ -292,6 +306,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.2,
     location: "Antigua",
+    published: true,
   },
   {
     title: "Renault Kwid Intense",
@@ -311,6 +326,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.0,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "Renault Stepway Intense",
@@ -330,6 +346,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.6,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "Kia Picanto X-Line 1.25 MT",
@@ -349,6 +366,7 @@ const carData: Prisma.CarCreateInput[] = [
     engineType: "PETROL",
     engineCapacity: 1.25,
     location: "Chimaltenango",
+    published: true,
   },
   {
     title: "GMC Acadia SLE",
@@ -369,6 +387,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 50000,
     engineType: "PETROL",
     engineCapacity: 3.6,
+    published: true,
   },
   {
     title: "Chevrolet Traverse LT Sport Utility 4D",
@@ -390,6 +409,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 70000,
     engineType: "PETROL",
     engineCapacity: 3.6,
+    published: true,
   },
   {
     title: "Chevrolet Trax LS Sport Utility 4D",
@@ -410,6 +430,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 60000,
     engineType: "PETROL",
     engineCapacity: 1.4,
+    published: true,
   },
   {
     title: "Chevrolet Jeep Cherokee Trailhawk L Plus 4X4",
@@ -433,6 +454,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 50000,
     engineType: "DIESEL",
     engineCapacity: 2.0,
+    published: true,
   },
   {
     title: "Nissan Altima 2.5 SV",
@@ -452,6 +474,7 @@ const carData: Prisma.CarCreateInput[] = [
     mileage: 55000,
     engineType: "PETROL",
     engineCapacity: 2.5,
+    published: true,
   },
 ];
 

@@ -27,7 +27,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
       success: "Inicio de sesión exitoso",
     };
   } catch (error: unknown) {
-    console.log(error);
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
@@ -40,7 +39,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
           };
       }
     }
-    console.error(error);
     throw error;
   }
 };

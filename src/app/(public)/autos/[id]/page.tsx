@@ -52,6 +52,9 @@ export async function generateStaticParams() {
       modelMake: true,
       modelYear: true,
     },
+    where: {
+      published: true,
+    },
   });
   return cars.map((car) => ({
     id: `${car.modelMake}-${car.modelYear}-${car.id}`,

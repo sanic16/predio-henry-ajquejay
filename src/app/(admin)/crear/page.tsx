@@ -1,5 +1,10 @@
-import React from "react";
+import AdminCard from "@/components/admin/AdminCard";
+import CreateCarForm from "@/components/admin/CreateCarForm";
 
 export default function page() {
-  return <div>page</div>;
+  return (
+    <AdminCard title="Crear Carro">
+      <CreateCarForm />
+    </AdminCard>
+  );
 }
