@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { CarsContextProvider } from "@/context/cars-context";
 import prisma from "@/lib/prisma";
 import { SessionProvider } from "next-auth/react";
+import { getAllPublishedCars } from "@/queries/common";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,19 +44,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cars = await prisma.car.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    where: {
-      published: true,
-    },
-  });
+  const cars = await getAllPublishedCars();
   return (
     <html lang="es">
       <body className={inter.className}>
         <SessionProvider>
-          <CarsContextProvider initialCars={cars}>
+          <CarsContextProvider initialCars={cars || []}>
             {children}
           </CarsContextProvider>
         </SessionProvider>

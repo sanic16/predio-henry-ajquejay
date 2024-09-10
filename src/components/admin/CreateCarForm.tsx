@@ -22,42 +22,94 @@ import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { CarSchema } from "@/schemas/car";
 import { Button } from "../ui/button";
-import FormError from "../messages/FormError";
-import FormSuccess from "../messages/FormSuccess";
-import { useState, useTransition } from "react";
-import { createCarAction } from "@/actions/cart";
+import { useTransition } from "react";
+import { createCarAction, updateCarAction } from "@/actions";
+import { toast } from "@/hooks/use-toast";
+import { Car } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import useContextCars from "@/context/cars-context";
 
-const CreateCarForm = () => {
-  const [error, setError] = useState<string | undefined>();
-  const [success, setSuccess] = useState<string | undefined>();
+interface CreateCarFormProps {
+  car?: Car;
+}
+
+const CreateCarForm: React.FC<CreateCarFormProps> = ({ car }) => {
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const { setSearchedCars } = useContextCars();
   const form = useForm<z.infer<typeof CarSchema>>({
     resolver: zodResolver(CarSchema),
     defaultValues: {
-      title: "",
-      modelYear: 2024,
-      modelMake: "",
-      price: 0,
-      condition: "USED",
-      transmission: "AUTO",
-      color: "",
-      mileage: 0,
-      engineType: "PETROL",
-      engineCapacity: 0,
-      doors: 0,
-      warranty: false,
-      lastServiced: "",
-      location: "",
-      description: "",
+      title: car ? car.title : "",
+      modelYear: car ? car.modelYear : 2021,
+      modelMake: car ? car.modelMake : "",
+      price: car ? car.price : 0,
+      condition: car ? car.condition : "USED",
+      transmission: car ? car.transmission : "AUTO",
+      mileage: car ? car.mileage : 40000,
+      engineType: car ? car.engineType : "PETROL",
+      engineCapacity: car ? car.engineCapacity : 0,
+      // Remove defaults for optional fields:
+      color: car && car.color ? car.color : undefined,
+      doors: car && car.doors ? car.doors : undefined,
+      warranty: car && car.warranty ? car.warranty : false,
+      lastServiced: car && car.lastServiced ? car.lastServiced : undefined,
+      location: car && car.location ? car.location : undefined,
+      description: car && car.description ? car.description : undefined,
     },
   });
 
   const onSubmit = (values: z.infer<typeof CarSchema>) => {
-    setError("");
-    setSuccess("");
-    startTransition(() => {});
-    console.log(values);
-    createCarAction(values);
+    !car &&
+      startTransition(async () => {
+        const response = await createCarAction(values);
+        if (response && response.error) {
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: response.error,
+            duration: 6000,
+          });
+          return;
+        }
+        if (response && response.cars) {
+          setSearchedCars(response.cars);
+        }
+        toast({
+          variant: "default",
+          title: "Éxito",
+          description: "Auto creado",
+          duration: 6000,
+        });
+        router.push("/actualizar");
+      });
+
+    car &&
+      startTransition(async () => {
+        const response = await updateCarAction(car.id, values);
+        if (response && response.error) {
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: response.error,
+            duration: 6000,
+          });
+          return;
+        }
+
+        if (response && response.cars) {
+          setSearchedCars(response.cars);
+        }
+
+        toast({
+          variant: "default",
+          title: "Éxito",
+          description: "Auto actualizado",
+          duration: 6000,
+        });
+
+        router.push("/actualizar");
+      });
   };
 
   return (
@@ -393,7 +445,7 @@ const CreateCarForm = () => {
           </div>
         </div>
         <Button type="submit" disabled={isPending}>
-          Crear Auto
+          {car ? "Actualizar" : "Crear"}
         </Button>
       </form>
     </Form>

@@ -9,7 +9,9 @@ export default async function RootLayout({
   return (
     <>
       <Navbar />
-      <main className="container mx-auto max-w-[1280px]">{children}</main>
+      <main className="container mx-auto max-w-[1280px] min-h-[calc(100vh-5rem)] mt-[5rem]">
+        {children}
+      </main>
       <Footer />
     </>
   );
