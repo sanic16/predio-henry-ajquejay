@@ -36,7 +36,7 @@ const Banner = () => {
       >
         {[carImg1, carImg2, carImg3, carImg4, carImg5].map((img, index) => (
           <SwiperSlide key={index}>
-            <div className="relative flex h-[50vh] sm:h-[75vh] w-full items-center justify-center">
+            <div className="relative flex h-[50vh] sm:h-[calc(100vh-5rem)] w-full items-center justify-center">
               <Image
                 src={img}
                 width={1280}

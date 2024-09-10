@@ -13,6 +13,7 @@ export default async function RootLayout({
       <AuthNavbar />
       <main className="container mx-auto max-w-[1280px] min-h-[calc(100vh-5rem)] mt-[5rem]">
         {children}
+        angela mi amor bello
       </main>
       <Footer />
     </ContextSpinnerProvider>

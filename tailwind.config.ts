@@ -15,9 +15,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-text": "linear-gradient(to right, #f59e0b, #ffffff)",
         "contact-header":
-          "linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('/cars/car_D_5.jpg')",
+          "linear-gradient(to right, rgba(0,0,0,0.65), rgba(0,0,0,0.8)), url('/cars/car_D_5.jpg')",
         "about-header":
-          "linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('/cars/car_E_2.jpg')",
+          "linear-gradient(to right, rgba(0,0,0,0.65), rgba(0,0,0,0.8)), url('/cars/car_E_2.jpg')",
       },
       backgroundClip: {
         text: "text",
