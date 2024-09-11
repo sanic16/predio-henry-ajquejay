@@ -5,7 +5,7 @@ export default function page() {
   return (
     <>
       <PageHeader title="Nosotros" className="bg-about-header" />
-      <div className="w-full bg-gray-100 mt-4 md:mt-8">
+      <div className="w-full bg-gray-100 mt-4 md:mt-8 px-2">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800">¿Quiénes somos?</h1>
           <p className="text-lg text-gray-600 mt-2">
