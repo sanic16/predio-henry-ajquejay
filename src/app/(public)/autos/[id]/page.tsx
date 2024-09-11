@@ -57,7 +57,7 @@ export default async function PageCarDetails({ params }: PageCarDetailsProps) {
 
   return (
     <div className="container mx-auto max-w-[1280px] px-2 xl:px-0">
-      <BackButton />{" "}
+      <BackButton />
       <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-x-8 gap-y-4 items-start">
         <div className="col-span-1 md:col-span-2">
           <CarSlideshowThumbnails images={car.images} />
