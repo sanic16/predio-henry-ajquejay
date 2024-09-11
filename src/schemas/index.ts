@@ -16,18 +16,36 @@ export const CarFilterSearchSchema = z.object({
 });
 
 export const CarContactSchema = z.object({
-  name: z.string({
-    message: "Nombre requerido.",
-  }),
+  name: z
+    .string({
+      message: "Nombre requerido.",
+    })
+    .min(3, {
+      message: "Nombre debe tener al menos 3 caracteres.",
+    })
+    .max(50, {
+      message: "Nombre debe tener a lo más 50 caracteres.",
+    }),
   email: z
     .string({
       message: "Correo electrónico requerido.",
     })
     .email({ message: "Correo electrónico inválido." }),
-  phone: z.string({
-    message: "Número de teléfono requerido.",
-  }),
-  message: z.string({
-    message: "Mensaje requerido.",
-  }),
+  phone: z
+    .string({
+      message: "Número de teléfono requerido.",
+    })
+    .min(8, {
+      message: "Número de teléfono debe tener al menos 8 caracteres.",
+    })
+    .max(8, {
+      message: "Número de teléfono debe tener a lo más 8 caracteres.",
+    }),
+  message: z
+    .string({
+      message: "Mensaje requerido.",
+    })
+    .min(10, {
+      message: "Mensaje debe tener al menos 10 caracteres.",
+    }),
 });

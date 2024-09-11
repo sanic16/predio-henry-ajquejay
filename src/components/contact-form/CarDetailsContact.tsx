@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,8 +17,9 @@ import { CarContactSchema } from "@/schemas";
 import { Textarea } from "@/components/ui/textarea";
 import FormError from "@/components/messages/FormError";
 import FormSuccess from "@/components/messages/FormSuccess";
-import { contactAction } from "@/actions/contact";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { contactAction } from "@/actions";
 
 interface CarDetailsContactProps {
   carId?: string;
@@ -31,6 +31,7 @@ const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
   title,
   messagePlaceholder,
 }) => {
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
@@ -49,14 +50,9 @@ const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
     setError("");
     setSuccess("");
     startTransition(() => {
-      contactAction(data)
+      contactAction(data, recaptchaToken as string)
         .then((res) => {
-          if ("error" in res) {
-            setError(res.error);
-          }
-          if ("success" in res) {
-            setSuccess(res.success);
-          }
+          console.log(res);
         })
         .catch((error) => {});
     });
@@ -151,6 +147,12 @@ const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
           <Button type="submit" className="w-full" disabled={isPending}>
             Enviar
           </Button>
+          <ReCAPTCHA
+            onChange={(token) => setRecaptchaToken(token)}
+            sitekey={
+              process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY as string
+            }
+          />
         </form>
       </Form>
     </div>

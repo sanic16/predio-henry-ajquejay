@@ -8,3 +8,4 @@ export {
   updateCarAction,
 } from "./car";
 export { uploadImageAction } from "./images";
+export { contactAction } from "./actions";

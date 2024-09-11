@@ -1,5 +1,5 @@
 import PageHeader from "@/components/header/PageHeader";
-import CarDetailsContact from "@/forms/CarDetailsContact";
+import CarDetailsContact from "@/components/contact-form/CarDetailsContact";
 import React from "react";
 
 export default function page() {
