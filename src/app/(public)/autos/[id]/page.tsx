@@ -1,7 +1,7 @@
 import BackButton from "@/components/buttons/BackButton";
 import CarDetails from "@/components/car-details/CarDetails";
 import CarSlideshowThumbnails from "@/components/slideshows/CarSlideshowThumbnails";
-import CarDetailsContact from "@/forms/CarDetailsContact";
+import CarDetailsContact from "@/components/contact-form/CarDetailsContact";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
