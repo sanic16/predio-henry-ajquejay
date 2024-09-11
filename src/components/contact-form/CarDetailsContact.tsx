@@ -15,8 +15,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { CarContactSchema } from "@/schemas";
 import { Textarea } from "@/components/ui/textarea";
-import FormError from "@/components/messages/FormError";
-import FormSuccess from "@/components/messages/FormSuccess";
 import { useState, useTransition, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { contactAction } from "@/actions";
@@ -33,8 +31,6 @@ const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
 }) => {
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>();
-  const [success, setSuccess] = useState<string | undefined>();
 
   const form = useForm<z.infer<typeof CarContactSchema>>({
     resolver: zodResolver(CarContactSchema),
@@ -47,12 +43,25 @@ const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
   });
 
   function onsubmit(data: z.infer<typeof CarContactSchema>) {
-    setError("");
-    setSuccess("");
     startTransition(() => {
       contactAction(data, recaptchaToken as string)
         .then((res) => {
-          console.log(res);
+          if (res.success) {
+            toast({
+              title: "Mensaje envíado correctamente",
+              description:
+                "Gracias por contactarnos, te responderemos lo más pronto posible",
+              duration: 10000,
+            });
+            form.reset();
+          } else if (res.error) {
+            toast({
+              variant: "destructive",
+              title: "Error al enviar mensaje",
+              description: res.error,
+              duration: 10000,
+            });
+          }
         })
         .catch((error) => {});
     });
@@ -142,8 +151,6 @@ const CarDetailsContact: React.FC<CarDetailsContactProps> = ({
               )}
             />
           </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={isPending}>
             Enviar
           </Button>
