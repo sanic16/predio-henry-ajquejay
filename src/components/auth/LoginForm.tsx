@@ -49,7 +49,7 @@ const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Bienvenido de otra vez"
+      headerLabel="Bienvenido otra vez"
       // backButtonLabel="Aún no tienes cuenta?"
       // backButtonHref="/auth/register"
     >
