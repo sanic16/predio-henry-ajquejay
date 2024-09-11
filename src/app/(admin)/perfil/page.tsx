@@ -6,18 +6,6 @@ export default async function profile() {
   return (
     <div>
       <div>{JSON.stringify(session)}</div>
-      <div>
-        <form
-          action={async () => {
-            "use server";
-            await signOut({
-              redirectTo: "/auth/login",
-            });
-          }}
-        >
-          <Button type="submit">Cerrar sesión</Button>
-        </form>
-      </div>
     </div>
   );
 }
