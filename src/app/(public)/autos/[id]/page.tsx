@@ -3,6 +3,7 @@ import CarDetails from "@/components/car-details/CarDetails";
 import CarSlideshowThumbnails from "@/components/slideshows/CarSlideshowThumbnails";
 import CarDetailsContact from "@/forms/CarDetailsContact";
 import prisma from "@/lib/prisma";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface PageCarDetailsProps {
@@ -10,6 +11,37 @@ interface PageCarDetailsProps {
     id: string;
   };
 }
+
+export async function generateMetadata({
+  params,
+}: PageCarDetailsProps): Promise<Metadata> {
+  const car = await prisma.car.findUnique({
+    where: {
+      id: params.id.split("-")[2],
+    },
+  });
+
+  if (!car) {
+    return {};
+  }
+
+  return {
+    title: `${car.title} - ${car.modelYear}`,
+    description: car.description,
+    keywords: [car.modelMake, car.modelYear.toString(), car.title],
+    openGraph: {
+      title: `${car.title} - ${car.modelYear}`,
+      description: car.description || "",
+      type: "website",
+      images: [
+        {
+          url: `${process.env.BASE_IMAGE_URL}${car.images[0]}`,
+        },
+      ],
+    },
+  };
+}
+
 export default async function PageCarDetails({ params }: PageCarDetailsProps) {
   const extractedId = params.id.split("-")[2];
 
