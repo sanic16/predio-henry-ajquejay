@@ -16,12 +16,15 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ id }) => {
     <div className="my-4">
       <h2>Subir imagen</h2>
       <form action={action}>
-        <input
-          type="file"
-          name="image"
-          accept="image/png, image/jpeg, image/jpg"
-        />
-        <p className="mb-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <input
+            type="file"
+            name="image"
+            accept="image/png, image/jpeg, image/jpg"
+            className="max-w-full flex-shrink text-sm"
+          />
+        </div>
+        <p className="mb-4 text-red-500">
           {state.errors._form && state.errors._form.join(", ")}
         </p>
         <FormButton buttonText="Subir" loadingText="Subiendo..." />

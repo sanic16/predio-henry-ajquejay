@@ -1,11 +1,12 @@
-import { auth, signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
+import Profile from "./Profile";
 
 export default async function profile() {
-  const session = await auth();
   return (
-    <div>
-      <div>{JSON.stringify(session)}</div>
+    <div className="px-2">
+      <Suspense fallback={<div>Cargando...</div>}>
+        <Profile />
+      </Suspense>
     </div>
   );
 }

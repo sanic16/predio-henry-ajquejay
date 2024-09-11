@@ -11,7 +11,7 @@ export default async function RootLayout({
   return (
     <ContextSpinnerProvider>
       <AuthNavbar />
-      <main className="container mx-auto max-w-[1280px] min-h-[calc(100vh-5rem)] mt-[5rem]">
+      <main className="container mx-auto max-w-[1280px] min-h-[calc(100vh-5rem)] mt-[5rem] pt-8">
         {children}
       </main>
       <Footer />

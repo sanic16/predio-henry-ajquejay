@@ -20,10 +20,6 @@ body {
   }
 }
 
-.navbar-container {
-  @apply mx-auto w-full lg:max-w-[1200px];
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
