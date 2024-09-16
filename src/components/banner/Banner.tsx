@@ -1,61 +1,26 @@
-"use client";
-
-import carImg1 from "@/../public/cars/car_A_1.jpg";
-import carImg2 from "@/../public/cars/car_B_1.jpg";
-import carImg3 from "@/../public/cars/car_C_1.jpg";
-import carImg4 from "@/../public/cars/car_D_1.jpg";
-import carImg5 from "@/../public/cars/car_E_1.jpg";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade, Autoplay } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import Image from "next/image";
-import "./banner.css";
+import BannerSearch from "./BannerSearch";
 
 const Banner = () => {
-  let bannerText = `Descubre la selección más exclusiva de vehículos y encuentra el auto
-          de tus sueños. ¡Explora nuestras ofertas y da el siguiente paso hacia
-          tu próxima aventura sobre ruedas!`;
-  if (typeof window !== "undefined" && window.innerWidth < 768) {
-    bannerText = `Descubre la selección más exclusiva de vehículos y encuentra el auto
-          de tus sueños.`;
-  }
   return (
-    <div className="relative banner">
-      <Swiper
-        navigation
-        modules={[Navigation, EffectFade, Autoplay]}
-        className="w-full rounded-lg" // Scoped styles applied here
-        effect="fade"
-        autoplay={{ delay: 5000 }}
-        loop
-      >
-        {[carImg1, carImg2, carImg3, carImg4, carImg5].map((img, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative flex h-[60vh] sm:h-[calc(100vh-5rem)] w-full items-center justify-center">
-              <Image
-                src={img}
-                width={1280}
-                height={960}
-                sizes="(max-width: 576px) 100vw,(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw"
-                alt="Car"
-                className="block h-full w-full object-cover"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="absolute bottom-0 left-0 right-0 z-[1] bg-black/70 text-white p-2 sm:p-3 md:p-4">
-        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center text-gray-200">
-          Bienvenido a Tu Destino Automotriz
-        </h2>
-        <p className="text-sm sm:text-base md:text-lg text-center text-gray-100 mt-1 md:mt-2">
-          {bannerText}
+    <div className="h-[calc(100vh-5rem)] bg-gray-500 relative">
+      <div className="absolute flex flex-col items-center gap-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-[92%] lg:max-w-4xl xl:max-w-5xl bg-gray-950/50 px-4 py-8 rounded-lg">
+        <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white capitalize text-center">
+          En la búsqueda de tu próximo auto ?
+        </h1>
+        <p className="lg:text-xl text-white text-center">
+          Busca y encuentra el auto que más se ajuste a tus necesidades.
         </p>
+
+        <BannerSearch />
+      </div>
+      <div className="h-full relative">
+        <Image
+          src={`${process.env.BASE_IMAGE_URL}henry-ajquejay/header/coqk0hswb6j93joxplyk`}
+          alt="Banner"
+          fill
+          className="object-cover object-[50%,75%]"
+        />
       </div>
     </div>
   );

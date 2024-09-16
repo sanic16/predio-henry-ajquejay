@@ -57,7 +57,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`container mx-auto max-w-[1280px] h-[5rem] grid items-center text-white fixed top-0 left-0 right-0 z-10 ${
+      className={`container mx-auto max-w-[1280px] h-[5rem] grid items-center text-white fixed top-0 left-0 right-0 z-50 ${
         bgOnScroll ? "bg-gray-800/80 backdrop-blur-sm" : "bg-gray-800"
       }`}
     >

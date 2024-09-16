@@ -26,3 +26,18 @@ export const search = async (values: z.infer<typeof CarFilterSearchSchema>) => {
     where: filters,
   });
 };
+
+export const searchByTitle = async (title: string) => {
+  // Check if the title is a 4-digit number and should be used for modelYear
+  const year = /^\d{4}$/.test(title) ? parseInt(title, 10) : undefined;
+
+  return await prisma.car.findMany({
+    where: {
+      OR: [
+        { title: { contains: title, mode: "insensitive" } },
+        { modelMake: { contains: title, mode: "insensitive" } },
+        { modelYear: year !== undefined ? year : undefined },
+      ],
+    },
+  });
+};

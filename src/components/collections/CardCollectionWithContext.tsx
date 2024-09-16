@@ -30,7 +30,7 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
   // Determine if there are more cars to load
 
   return (
-    <section className="px-2 xl:px-0 mt-8 md:mt-12 min-h-screen">
+    <section id="cars" className="px-2 xl:px-0 mt-8 md:mt-12 min-h-screen">
       <SectionHeading title="Todos los autos" align="left" />
 
       {/* Button to show/hide filter form on small screens */}
