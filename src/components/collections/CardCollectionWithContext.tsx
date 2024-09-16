@@ -64,11 +64,15 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
             <div className="flex justify-center">
               <RingLoading />
             </div>
-          ) : (
+          ) : cars.length > 0 ? (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-2">
               {cars.map((car) => (
                 <CardCar key={car.id} {...car} />
               ))}
+            </div>
+          ) : (
+            <div className="flex justify-center">
+              <p>No se encontraron autos</p>
             </div>
           )}
 
