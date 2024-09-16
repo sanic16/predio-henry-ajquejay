@@ -19,6 +19,7 @@ const Banner = () => {
           src={`${process.env.BASE_IMAGE_URL}henry-ajquejay/header/coqk0hswb6j93joxplyk`}
           alt="Banner"
           fill
+          sizes="100vw"
           className="object-cover object-[50%,75%]"
         />
       </div>
