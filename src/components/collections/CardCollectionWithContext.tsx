@@ -16,14 +16,13 @@ interface CardCollectionProps {
 }
 
 const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
-  carsData: initialCars,
   transmissions,
   models,
   years,
   minPrice,
   maxPrice,
 }) => {
-  const { cars, loadMoreCars, hasMoreCars } = useContextCars();
+  const { cars, loadMoreCars, hasMoreCars, loadingCars } = useContextCars();
 
   const [showFilterForm, setShowFilterForm] = useState(false); // State to toggle filter form visibility
 
@@ -60,11 +59,16 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
         </div>
 
         <div className="col-span-3">
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-2">
-            {cars.map((car) => (
-              <CardCar key={car.id} {...car} />
-            ))}
-          </div>
+          {loadingCars ? (
+            <div>Cargando autos...</div>
+          ) : (
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-2">
+              {cars.map((car) => (
+                <CardCar key={car.id} {...car} />
+              ))}
+            </div>
+          )}
+
           {hasMoreCars && (
             <div className="flex justify-center mt-4">
               <button

@@ -1,5 +1,4 @@
 import { Car } from "@prisma/client";
-import { Button } from "../ui/button";
 import ActionButton from "./ActionButton";
 import { deleteCarAction, publishCarAction } from "@/actions";
 import Link from "next/link";

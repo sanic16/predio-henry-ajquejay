@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { searchByTitle } from "@/actions/search";
 import { toast } from "@/hooks/use-toast";
 import useContextCars from "@/context/cars-context";
@@ -9,16 +9,22 @@ import { useRouter } from "next/navigation";
 const BannerSearch = () => {
   const [carTitle, setCarTitle] = useState("");
   const [isPending, startTransition] = useTransition();
-  const { setSearchedCars } = useContextCars();
+  const { setSearchedCars, handleLoadingCars } = useContextCars();
   const router = useRouter();
 
+  useEffect(() => {
+    if (isPending) {
+      router.push("/#cars");
+    }
+  }, [isPending, router]);
+
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    handleLoadingCars(true);
     startTransition(() => {
       searchByTitle(carTitle)
         .then((data) => {
           //   console.log(data);
           setSearchedCars(data);
-          router.push("/#cars");
         })
         .catch((error) => {
           toast({
@@ -27,6 +33,9 @@ const BannerSearch = () => {
             description: "No se encontraron resultados",
             duration: 5000,
           });
+        })
+        .finally(() => {
+          handleLoadingCars(false);
         });
     });
   };

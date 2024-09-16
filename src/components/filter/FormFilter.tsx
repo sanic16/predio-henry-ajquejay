@@ -40,7 +40,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
   minPrice,
   maxPrice,
 }) => {
-  const { setSearchedCars } = useContextCars();
+  const { setSearchedCars, loadingCars, handleLoadingCars } = useContextCars();
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof CarFilterSearchSchema>>({
@@ -51,13 +51,12 @@ const FormFilter: React.FC<FormFilterProps> = ({
   });
 
   function onSubmit(data: z.infer<typeof CarFilterSearchSchema>) {
+    handleLoadingCars(true);
     startTransition(() => {
       search(data)
         .then((data) => {
-          if (data.length > 0) {
-            setSearchedCars(data);
-            console.log(data);
-          } else {
+          setSearchedCars(data);
+          if (data.length === 0) {
             toast({
               variant: "destructive",
               title: "Sin resultados",
@@ -68,7 +67,15 @@ const FormFilter: React.FC<FormFilterProps> = ({
           }
         })
         .catch((error) => {
-          console.error(error);
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: "Ocurrió un error al buscar los autos.",
+            duration: 5000,
+          });
+        })
+        .finally(() => {
+          handleLoadingCars(false);
         });
     });
   }
@@ -91,7 +98,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
                       step={10000}
                       value={[value]}
                       onValueChange={(v) => onChange(v[0])}
-                      disabled={isPending}
+                      disabled={isPending || loadingCars}
                     />
                   </FormControl>
                   <FormMessage />
@@ -107,7 +114,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    disabled={isPending}
+                    disabled={isPending || loadingCars}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -137,7 +144,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    disabled={isPending}
+                    disabled={isPending || loadingCars}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -170,7 +177,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    disabled={isPending}
+                    disabled={isPending || loadingCars}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -197,7 +204,7 @@ const FormFilter: React.FC<FormFilterProps> = ({
               )}
             />
 
-            <Button type="submit" disabled={isPending}>
+            <Button type="submit" disabled={isPending || loadingCars}>
               Buscar
             </Button>
           </div>

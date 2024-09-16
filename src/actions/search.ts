@@ -28,6 +28,7 @@ export const search = async (values: z.infer<typeof CarFilterSearchSchema>) => {
 };
 
 export const searchByTitle = async (title: string) => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   // Check if the title is a 4-digit number and should be used for modelYear
   const year = /^\d{4}$/.test(title) ? parseInt(title, 10) : undefined;
 

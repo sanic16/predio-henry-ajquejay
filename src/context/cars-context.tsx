@@ -8,6 +8,8 @@ export const CarsContext = createContext<CarsContextType>({
   loadMoreCars: () => {},
   setSearchedCars: () => {},
   hasMoreCars: false,
+  loadingCars: false,
+  handleLoadingCars: () => {},
 });
 
 export const CarsContextProvider = ({
@@ -17,6 +19,7 @@ export const CarsContextProvider = ({
   children: React.ReactNode;
   initialCars: Car[];
 }) => {
+  const [loadingCars, setLoadingCars] = useState(false);
   const itemsPerPage = 9;
   const [filteredCars, setFilteredCars] = useState<Car[]>(initialCars);
   const [cars, setCars] = useState<Car[]>(filteredCars.slice(0, itemsPerPage));
@@ -39,6 +42,7 @@ export const CarsContextProvider = ({
   };
 
   const hasMoreCars = currentPage * itemsPerPage < filteredCars.length;
+  const handleLoadingCars = (loading: boolean) => setLoadingCars(loading);
 
   return (
     <CarsContext.Provider
@@ -47,6 +51,8 @@ export const CarsContextProvider = ({
         loadMoreCars,
         hasMoreCars,
         setSearchedCars,
+        loadingCars,
+        handleLoadingCars,
       }}
     >
       {children}

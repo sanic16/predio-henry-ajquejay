@@ -1,6 +1,5 @@
 import Footer from "@/components/footer/Footer";
 import AuthNavbar from "@/components/navbar/AuthNavbar";
-import Navbar from "@/components/navbar/Navbar";
 import { ContextSpinnerProvider } from "@/context/context-spinner";
 
 export default async function RootLayout({
