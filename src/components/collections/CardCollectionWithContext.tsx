@@ -5,6 +5,7 @@ import FormFilter from "../filter/FormFilter";
 import { Car } from "@prisma/client";
 import { useState } from "react";
 import useContextCars from "@/context/cars-context";
+import RingLoading from "../loaders/RingLoading";
 
 interface CardCollectionProps {
   carsData: Car[];
@@ -60,7 +61,9 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
 
         <div className="col-span-3">
           {loadingCars ? (
-            <div>Cargando autos...</div>
+            <div className="flex justify-center">
+              <RingLoading />
+            </div>
           ) : (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-2">
               {cars.map((car) => (
@@ -69,7 +72,7 @@ const CardCollectionWithContext: React.FC<CardCollectionProps> = ({
             </div>
           )}
 
-          {hasMoreCars && (
+          {hasMoreCars && !loadingCars && (
             <div className="flex justify-center mt-4">
               <button
                 onClick={loadMoreCars}
